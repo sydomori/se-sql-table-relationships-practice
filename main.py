@@ -13,3 +13,13 @@ q = """
 
 df = pd.read_sql_query(q, conn)
 print(df)
+
+#customers and their orders
+q = """
+ SELECT contactFirstName, contactLastName, orderNumber, orderDate, status 
+ FROM customers
+ JOIN orders ON orders.customerNumber = customers.customerNumber
+"""
+
+df = pd.read_sql_query(q, conn)
+print(df.head())
