@@ -34,3 +34,25 @@ q = """
 
 df = pd.read_sql_query(q, conn)
 print(df.head())
+
+#orders, order details and product details(many to many)
+q = """
+SELECT
+    contactFirstName,
+    contactLastName,
+    productName,
+    quantityOrdered,
+    orderDate
+FROM customers
+JOIN orders
+    USING(customerNumber)
+JOIN orderdetails
+    USING(orderNumber)
+JOIN products
+    USING (productCode)
+ORDER BY orderDate DESC
+;"""
+df = pd.read_sql(q, conn)
+print('Total number of results:', len(df))
+df.head()
+
