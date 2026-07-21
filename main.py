@@ -23,3 +23,14 @@ q = """
 
 df = pd.read_sql_query(q, conn)
 print(df.head())
+
+#customers and their orders
+q = """
+ SELECT contactFirstName, contactLastName, amount, paymentDate
+ FROM customers
+ JOIN payments ON payments.customerNumber = customers.customerNumber
+ ORDER BY amount DESC
+"""
+
+df = pd.read_sql_query(q, conn)
+print(df.head())
