@@ -56,3 +56,5 @@ df = pd.read_sql(q, conn)
 print('Total number of results:', len(df))
 df.head()
 
+conn.close()
+
